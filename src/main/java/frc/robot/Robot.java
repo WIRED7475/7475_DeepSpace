@@ -1,6 +1,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -23,8 +24,8 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit()
    {
+    CameraServer.getInstance().startAutomaticCapture();
     
-  
   }
 
   

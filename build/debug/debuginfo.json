@@ -3,7 +3,7 @@
     "artifact": "frcJava",
     "target": "roborio",
     "debugfile": "frcJava_roborio.debugconfig",
-    "project": "7475DeepSpace",
+    "project": "7475_DeepSpace",
     "language": "java"
   }
 ]
