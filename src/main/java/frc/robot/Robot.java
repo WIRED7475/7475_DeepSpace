@@ -2,6 +2,7 @@
 package frc.robot;
 
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -15,6 +16,7 @@ public class Robot extends TimedRobot {
   public static DriveBase driveBase = new DriveBase();
   public static OI oi = new OI();
  
+  public static Servo servo1 = new Servo(4);
 
 
  // Command m_autonomousCommand;
@@ -25,6 +27,7 @@ public class Robot extends TimedRobot {
   public void robotInit()
    {
     CameraServer.getInstance().startAutomaticCapture();
+   
     
   }
 
@@ -32,6 +35,8 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() 
   {
+    ServoSwerve();
+    
   }
 
  
@@ -84,4 +89,18 @@ public class Robot extends TimedRobot {
   {
 
   }
+
+
+//user made functions
+
+//Servo Movement
+
+private static void ServoSwerve()
+{
+    double sliderValue  = Robot.oi.DriveStick.getRawAxis(3);
+    servo1.setAngle((sliderValue + 1 )* 90);
+    SmartDashboard.putNumber("ServoAngle", servo1.getAngle());
+}
+
+
 }
