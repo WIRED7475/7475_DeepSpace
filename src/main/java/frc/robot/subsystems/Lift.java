@@ -7,6 +7,8 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.DigitalGlitchFilter;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -20,6 +22,8 @@ public class Lift extends Subsystem
     public Spark leftReel = new Spark(RobotMap.leftReel_num);
     public Spark rightReel = new Spark(RobotMap.rightReel_num);
 
+    DigitalInput limit = new DigitalInput(0);
+
   
 
   @Override
@@ -30,6 +34,12 @@ public class Lift extends Subsystem
 
   public void RaiseLift(boolean buttonState)
   {
+    if(limit.get())
+    {
+      leftReel.set(0);
+      rightReel.set(0);
+      return;
+    }
     if(buttonState)
     {
     leftReel.set(-0.5);
