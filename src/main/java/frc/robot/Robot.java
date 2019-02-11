@@ -8,15 +8,19 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DriveBase;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Lift;
 
 
 
 public class Robot extends TimedRobot {
   
   public static DriveBase driveBase = new DriveBase();
+  public static Lift lift = new Lift();
+  public static Intake intake = new Intake();
   public static OI oi = new OI();
  
-  public static Servo servo1 = new Servo(4);
+  public static Servo servo1 = new Servo(8);
 
 
 
@@ -37,7 +41,17 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() 
   {
     ServoSwerve();
+
+    ///////////////////setting variables
+    if(!Robot.oi.liftButton.get() && !Robot.oi.lowerButton.get())
+    {
+      SmartDashboard.putString("Lift State", "Lift Immobile");
+    }
     
+    if(!Robot.oi.shootOutButton.get() && !Robot.oi.takeInButton.get())
+    {
+      SmartDashboard.putString("Claw State", "Claw Immobile");
+    }
   }
 
  
