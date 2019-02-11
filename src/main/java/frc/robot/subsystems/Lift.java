@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 
@@ -28,14 +29,29 @@ public class Lift extends Subsystem
 
   public void RaiseLift()
   {
-    leftReel.set(-1);
+    if(Robot.oi.lowerButton.get())
+    {
+    leftReel.set(-0.5);
     rightReel.set(0.465);
+    }else
+    {
+    leftReel.set(0);
+    rightReel.set(0);
+    }
+
   }
 
   public void LowerLift()
   {
-    leftReel.set(1);
+    if(Robot.oi.liftButton.get())
+    {
+    leftReel.set(0.5);
     rightReel.set(-0.465);
+    }else
+    {
+    leftReel.set(0);
+    rightReel.set(0);
+    }
 
   }
 }
