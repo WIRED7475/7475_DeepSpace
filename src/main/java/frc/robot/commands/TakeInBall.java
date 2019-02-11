@@ -26,7 +26,7 @@ public class TakeInBall extends Command {
   @Override
   protected void execute() 
   {
-    Robot.intake.TakeIn();
+    Robot.intake.TakeIn(Robot.oi.takeInButton.get());
     SmartDashboard.putString("Claw State", "Taking In!");
     
   }

@@ -26,7 +26,7 @@ public class LowerLift extends Command {
   @Override
   protected void execute()
   {
-    Robot.lift.LowerLift();
+    Robot.lift.LowerLift(Robot.oi.lowerButton.get());
     SmartDashboard.putString("Lift State", "Raising Lift");
 
   }

@@ -25,16 +25,32 @@ public class Intake extends Subsystem
    
   }
 
-  public void TakeIn()
+  public void TakeIn(boolean buttonState)
   {
-    leftIntake.set(-1);
-    rightIntake.set(1);
+    if(buttonState)
+    {
+    leftIntake.set(-0.25);
+    rightIntake.set(0.25);
+    }
+    else
+    {
+      leftIntake.set(0);
+      rightIntake.set(0);
+    }
 
   }
 
-  public void ShootOut()
+  public void ShootOut(boolean buttonState)
   {
-    leftIntake.set(1);
-    rightIntake.set(-1);
+    if(buttonState)
+    {
+    leftIntake.set(0.25);
+    rightIntake.set(-0.25);
+    }
+    else
+    {
+      leftIntake.set(0);
+      rightIntake.set(0);
+    }
   }
 }

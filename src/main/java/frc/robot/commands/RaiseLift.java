@@ -26,7 +26,7 @@ public class RaiseLift extends Command {
   @Override
   protected void execute() 
   {
-    Robot.lift.RaiseLift();
+    Robot.lift.RaiseLift(Robot.oi.liftButton.get());
     SmartDashboard.putString("Lift State", "Raising Lift");
   }
 

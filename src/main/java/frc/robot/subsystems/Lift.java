@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
@@ -27,9 +28,9 @@ public class Lift extends Subsystem
     
   }
 
-  public void RaiseLift()
+  public void RaiseLift(boolean buttonState)
   {
-    if(Robot.oi.lowerButton.get())
+    if(buttonState)
     {
     leftReel.set(-0.5);
     rightReel.set(0.465);
@@ -41,9 +42,9 @@ public class Lift extends Subsystem
 
   }
 
-  public void LowerLift()
+  public void LowerLift(boolean buttonState)
   {
-    if(Robot.oi.liftButton.get())
+    if(buttonState)
     {
     leftReel.set(0.5);
     rightReel.set(-0.465);
