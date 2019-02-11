@@ -40,7 +40,7 @@ public class Lift extends Subsystem
       rightReel.set(0);
       return;
     }
-    if(buttonState)
+    if(buttonState && !limit.get())
     {
     leftReel.set(-0.5);
     rightReel.set(0.465);
