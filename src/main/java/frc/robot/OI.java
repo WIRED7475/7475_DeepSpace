@@ -23,6 +23,8 @@ public class OI
   public JoystickButton takeInButton = new JoystickButton(OperatorController, 3);
   public JoystickButton shootOutButton = new JoystickButton(OperatorController, 2);
 
+  public JoystickButton StopAllButton = new JoystickButton(OperatorController, 9);
+
 public OI()
 {
     stopButton.whileHeld(new Brake());

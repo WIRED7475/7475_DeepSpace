@@ -51,6 +51,23 @@ public class Robot extends TimedRobot {
     {
       SmartDashboard.putString("Claw State", "Claw Immobile");
     }
+
+
+
+    if(Robot.oi.StopAllButton.get() == true)
+    {
+      Robot.intake.leftIntake.stopMotor();
+      Robot.intake.rightIntake.stopMotor();
+
+      Robot.lift.leftReel.stopMotor();
+      Robot.lift.rightReel.stopMotor();
+
+      Robot.driveBase.blMotor.stopMotor();
+      Robot.driveBase.brMotor.stopMotor();
+      Robot.driveBase.flMotor.stopMotor();
+      Robot.driveBase.frMotor.stopMotor();
+
+    }
   }
 
  
