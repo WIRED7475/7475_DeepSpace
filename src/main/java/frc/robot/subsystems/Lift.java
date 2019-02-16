@@ -34,16 +34,17 @@ public class Lift extends Subsystem
 
   public void RaiseLift(boolean buttonState)
   {
-    if(limit.get())
-    {
-      leftReel.set(0);
-      rightReel.set(0);
-      return;
+   if(limit.get())
+ {
+    leftReel.set(0);
+     rightReel.set(0);
+     return;
     }
+   
     if(buttonState && !limit.get())
     {
-    leftReel.set(-0.5);
-    rightReel.set(0.465);
+    leftReel.set(0.53);
+    rightReel.set(-0.51);
     }else
     {
     leftReel.set(0);
@@ -56,8 +57,8 @@ public class Lift extends Subsystem
   {
     if(buttonState)
     {
-    leftReel.set(0.5);
-    rightReel.set(-0.465);
+    leftReel.set(-0.47);
+    rightReel.set(0.51);
     }else
     {
     leftReel.set(0);

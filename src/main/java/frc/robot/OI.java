@@ -17,7 +17,7 @@ public class OI
 
   public JoystickButton stopButton = new JoystickButton(DriveStick, 1);
 
-  public JoystickButton liftButton = new JoystickButton(OperatorController, 4);
+  public JoystickButton liftButton = new JoystickButton(OperatorController, 1);
   public JoystickButton lowerButton = new JoystickButton(OperatorController, 4);
 
   public JoystickButton takeInButton = new JoystickButton(OperatorController, 3);
