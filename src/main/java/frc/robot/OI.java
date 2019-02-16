@@ -29,11 +29,11 @@ public OI()
 {
     stopButton.whileHeld(new Brake());
 
-    liftButton.whileHeld(new RaiseLift());
-    lowerButton.whileHeld(new LowerLift());
+    liftButton.whenPressed(new RaiseLift());
+    lowerButton.whenPressed(new LowerLift());
 
-    takeInButton.whileHeld(new TakeInBall());
-    shootOutButton.whileHeld(new ShootBall());
+    takeInButton.whenPressed(new TakeInBall());
+    shootOutButton.whenPressed(new ShootBall());
     
 
   }
