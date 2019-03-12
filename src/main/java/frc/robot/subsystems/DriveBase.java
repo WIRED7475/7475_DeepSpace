@@ -41,7 +41,7 @@ public class DriveBase extends Subsystem
   {
     if(buttonState)
     {
-      rightMotorGroup.set(-joystick.getX());
+      rightMotorGroup.set(joystick.getX());
       leftMotorGroup.set(joystick.getX());
     }
 
