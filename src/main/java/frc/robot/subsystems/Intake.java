@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 
 
@@ -17,6 +18,9 @@ public class Intake extends Subsystem
 
   public Spark leftIntake = new Spark(RobotMap.leftIntake_num);
   public Spark rightIntake = new Spark(RobotMap.rightIntake_num);
+
+  public Spark wristMotor = new Spark(RobotMap.wristMotor_num);
+
 
 
   @Override
@@ -29,6 +33,7 @@ public class Intake extends Subsystem
   {
     if(buttonState)
     {
+    SmartDashboard.putString("Claw State", "Taking In!");
     leftIntake.set(-0.25);
     rightIntake.set(0.25);
     }
@@ -44,8 +49,10 @@ public class Intake extends Subsystem
   {
     if(buttonState)
     {
+    SmartDashboard.putString("Claw State", "Shooting!");
     leftIntake.set(0.25);
     rightIntake.set(-0.25);
+    
     }
     else
     {

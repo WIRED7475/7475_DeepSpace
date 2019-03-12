@@ -27,7 +27,7 @@ public class ShootBall extends Command {
   protected void execute()
   {
     Robot.intake.ShootOut(Robot.oi.shootOutButton.get());
-    SmartDashboard.putString("Claw State", "Shooting!");
+   
     
   }
 

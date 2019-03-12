@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 
@@ -35,7 +36,7 @@ public class Lift extends Subsystem
   public void RaiseLift(boolean buttonState)
   {
    if(limit.get())
- {
+   {
     leftReel.set(0);
      rightReel.set(0);
      return;
@@ -43,12 +44,14 @@ public class Lift extends Subsystem
    
     if(buttonState && !limit.get())
     {
+    SmartDashboard.putString("Lift State", "Raising Lift");
     leftReel.set(0.53);
     rightReel.set(-0.51);
     }else
     {
     leftReel.set(0);
     rightReel.set(0);
+    
     }
 
   }
@@ -57,6 +60,7 @@ public class Lift extends Subsystem
   {
     if(buttonState)
     {
+    SmartDashboard.putString("Lift State", "Lowering Lift");
     leftReel.set(-0.47);
     rightReel.set(0.51);
     }else
@@ -66,4 +70,6 @@ public class Lift extends Subsystem
     }
 
   }
+  
 }
+

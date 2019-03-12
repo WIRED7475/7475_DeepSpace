@@ -34,8 +34,19 @@ public class DriveBase extends Subsystem
   public void joystickDrive(Joystick joystick)
   {
     robotDrive.setSafetyEnabled(false);
-    robotDrive.arcadeDrive(joystick.getY(), joystick.getX());
+    robotDrive.arcadeDrive(-joystick.getY(), joystick.getX());
   }
+
+  public void Rotate(Joystick joystick, boolean buttonState)
+  {
+    if(buttonState)
+    {
+      rightMotorGroup.set(-joystick.getX());
+      leftMotorGroup.set(joystick.getX());
+    }
+
+  }
+
   public void Brake()
   {
     blMotor.set(0);
@@ -43,4 +54,6 @@ public class DriveBase extends Subsystem
     brMotor.set(0);
     frMotor.set(0);
   }
+
+
 }

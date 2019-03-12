@@ -14,4 +14,6 @@ public class RobotMap
  
     public static int leftIntake_num = 4;
     public static int rightIntake_num = 5;
+
+    public static int wristMotor_num = 8;
 }

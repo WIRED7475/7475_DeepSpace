@@ -1,20 +1,14 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
+
 
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
-public class RaiseLift extends Command {
-  public RaiseLift() {
-  
-    requires(Robot.lift);
+public class Rotate extends Command {
+  public Rotate() {
+   
+      requires(Robot.driveBase);
   }
 
   // Called just before this Command runs the first time
@@ -26,8 +20,8 @@ public class RaiseLift extends Command {
   @Override
   protected void execute() 
   {
-    Robot.lift.RaiseLift(Robot.oi.liftButton.get());
-    
+
+    Robot.driveBase.Rotate(Robot.oi.DriveStick, Robot.oi.RotateButton.get());
   }
 
   // Make this return true when this Command no longer needs to run execute()

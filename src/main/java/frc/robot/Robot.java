@@ -1,9 +1,12 @@
 
 package frc.robot;
 
+import javax.lang.model.util.ElementScanner6;
+
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DriveBase;
@@ -19,19 +22,25 @@ public class Robot extends TimedRobot {
   public static Intake intake = new Intake();
   public static OI oi = new OI();
  
-  public static Servo servo1 = new Servo(8);
+  public static Servo servo1 = new Servo(9);
 
+  public static Timer timer = new Timer();
 
 
  // Command m_autonomousCommand;
  // SendableChooser<Command> m_chooser = new SendableChooser<>();
-
  
   @Override
   public void robotInit()
    {
+    timer.start();
+
+
     CameraServer.getInstance().startAutomaticCapture();
-   
+    
+   InitiateIntake();
+
+    
     
   }
 
@@ -39,7 +48,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() 
   {
-    ServoSwerve();
+ 
 
     ///////////////////setting variables
     if(!Robot.oi.liftButton.get() && !Robot.oi.lowerButton.get())
@@ -68,7 +77,24 @@ public class Robot extends TimedRobot {
       Robot.driveBase.frMotor.stopMotor();
 
     }
-  }
+
+
+    if(Robot.oi.wristMotorRaise.get())
+    {
+      Robot.intake.wristMotor.set(0.5);
+    }else if(Robot.oi.wristMotorLower.get())
+    {
+      Robot.intake.wristMotor.set(0.0);
+    }else
+    {
+      Robot.intake.wristMotor.set(0.2);
+    }
+      
+  
+      
+    }
+
+  
 
  
   @Override
@@ -126,12 +152,24 @@ public class Robot extends TimedRobot {
 
 //Servo Movement
 
-private static void ServoSwerve()
+private static void InitiateIntake()
 {
-    double sliderValue  = Robot.oi.DriveStick.getRawAxis(3);
-    servo1.setAngle((sliderValue + 1 )* 90);
-    SmartDashboard.putNumber("ServoAngle", servo1.getAngle());
-}
+  double currentActionTime = timer.get();
+ 
+  
+  
+  currentActionTime = timer.get();
+  while(timer.get() - currentActionTime < 4)
+  {
+  Robot.intake.wristMotor.set(0.5);
+    if(timer.get() - currentActionTime > 1.5)
+    {
+      servo1.set(180);
+    }
+  }
+ 
+  Robot.intake.wristMotor.set(0.2);
 
+}
 
 }
