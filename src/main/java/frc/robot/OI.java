@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.Brake;
+import frc.robot.commands.DriveStraight;
 import frc.robot.commands.LowerLift;
 import frc.robot.commands.RaiseLift;
 import frc.robot.commands.Rotate;
@@ -18,6 +19,7 @@ public class OI
 
   public JoystickButton stopButton = new JoystickButton(DriveStick, 2);
   public JoystickButton RotateButton = new JoystickButton(DriveStick, 1);
+  public JoystickButton driveStraightBurron = new JoystickButton(DriveStick, 5);
 
   public JoystickButton liftButton = new JoystickButton(OperatorController, 4);
   public JoystickButton lowerButton = new JoystickButton(OperatorController, 1);
@@ -36,6 +38,7 @@ public OI()
 {
     stopButton.whileHeld(new Brake());
     RotateButton.whileHeld(new Rotate());
+    driveStraightBurron.whileHeld((new DriveStraight()));
 
     liftButton.whenPressed(new RaiseLift());
     lowerButton.whenPressed(new LowerLift());
