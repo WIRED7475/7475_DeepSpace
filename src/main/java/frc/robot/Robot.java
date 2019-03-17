@@ -43,7 +43,7 @@ public class Robot extends TimedRobot {
 
     CameraServer.getInstance().startAutomaticCapture();
     
-   InitiateIntake();
+   
 
     
     
@@ -135,6 +135,7 @@ public class Robot extends TimedRobot {
   public void teleopInit() 
   {
     
+    InitiateIntake();
     //if (m_autonomousCommand != null) {
     //  m_autonomousCommand.cancel();
   }
