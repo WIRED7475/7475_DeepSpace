@@ -23,7 +23,7 @@ public class Lift extends Subsystem
     public Spark leftReel = new Spark(RobotMap.leftReel_num);
     public Spark rightReel = new Spark(RobotMap.rightReel_num);
 
-    DigitalInput limit = new DigitalInput(0);
+    public  DigitalInput limit = new DigitalInput(0);
 
   
 

@@ -59,7 +59,7 @@ public class Robot extends TimedRobot {
   {
  
 
-    ///////////////////setting variables
+    ///////////////////setting variables on dashboard
     if(!Robot.oi.liftButton.get() && !Robot.oi.lowerButton.get())
     {
       SmartDashboard.putString("Lift State", "Lift Immobile");
@@ -70,8 +70,10 @@ public class Robot extends TimedRobot {
       SmartDashboard.putString("Claw State", "Claw Immobile");
     }
 
+    SmartDashboard.putBoolean("Top LimitSwitch", Robot.lift.limit.get());
+    
 
-
+    ////////////////////
     if(Robot.oi.StopAllButton.get() == true)
     {
       Robot.intake.leftIntake.stopMotor();
@@ -94,14 +96,17 @@ public class Robot extends TimedRobot {
       if(Robot.oi.OperatorController.getAButton())
       {
         Robot.intake.wristMotor.set(-0.5);
+        SmartDashboard.putString("WristMotorState", "GoingDown");
       }
       if(Robot.oi.OperatorController.getYButton())
       {
         Robot.intake.wristMotor.set(0.8);
+        SmartDashboard.putString("WristMotorState", "GoingUp");
       }
     }else
     {
       Robot.intake.wristMotor.set(0.0);
+      SmartDashboard.putString("WristMotorState", "No Power");
     }
       
   

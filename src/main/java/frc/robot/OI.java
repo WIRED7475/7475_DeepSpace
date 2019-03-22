@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.Brake;
 import frc.robot.commands.DriveStraight;
 import frc.robot.commands.LowerLift;
+import frc.robot.commands.NeutralWrist;
 import frc.robot.commands.RaiseLift;
 import frc.robot.commands.Rotate;
 import frc.robot.commands.ShootBall;
@@ -30,7 +31,7 @@ public class OI
   public JoystickButton StopAllButton = new JoystickButton(OperatorController, 9);
 
   public JoystickButton wristMotorLock = new JoystickButton(OperatorController, 6);
-  public JoystickButton wristMotorLower = new JoystickButton(OperatorController, 5);
+  public JoystickButton wristMotorNeutral = new JoystickButton(OperatorController, 5);
 
 
   public JoystickButton GripperButton = new JoystickButton(OperatorController, 2);
@@ -50,6 +51,8 @@ public OI()
     takeInButton.whenPressed(new TakeInBall());
     shootOutButton.whenPressed(new ShootBall());
     
+    wristMotorLock.whenPressed(new NeutralWrist());
+  
 
   }
 }

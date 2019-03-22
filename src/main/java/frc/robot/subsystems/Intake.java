@@ -60,4 +60,11 @@ public class Intake extends Subsystem
       rightIntake.set(0);
     }
   }
+
+  public void NeutralWrist()
+  {
+    wristMotor.set(0.2);
+    SmartDashboard.putString("WristMotorState", "Neutral");
+
+  }
 }
