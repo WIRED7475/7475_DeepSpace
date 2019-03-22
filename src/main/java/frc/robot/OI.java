@@ -29,7 +29,7 @@ public class OI
 
   public JoystickButton StopAllButton = new JoystickButton(OperatorController, 9);
 
-  public JoystickButton wristMotorRaise = new JoystickButton(OperatorController, 6);
+  public JoystickButton wristMotorLock = new JoystickButton(OperatorController, 6);
   public JoystickButton wristMotorLower = new JoystickButton(OperatorController, 5);
 
 

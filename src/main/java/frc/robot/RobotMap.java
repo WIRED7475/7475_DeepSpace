@@ -12,12 +12,12 @@ public class RobotMap
 
     //Reel Motors
     public static int leftReel_num = 6;
-    public static int rightReel_num = 7;
+    public static int rightReel_num = 8;
     
     //Intake Motors
     public static int leftIntake_num = 4;
     public static int rightIntake_num = 5;
 
     //Wrist Motors
-    public static int wristMotor_num = 8;
+    public static int wristMotor_num = 7;
 }

@@ -50,8 +50,8 @@ public class Intake extends Subsystem
     if(buttonState)
     {
     SmartDashboard.putString("Claw State", "Shooting!");
-    leftIntake.set(0.25);
-    rightIntake.set(-0.25);
+    leftIntake.set(1);
+    rightIntake.set(-1);
     
     }
     else

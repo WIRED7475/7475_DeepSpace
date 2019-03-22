@@ -42,11 +42,11 @@ public class Lift extends Subsystem
      return;
     }
    
-    if(buttonState && !limit.get())
+    if(buttonState && !limit.get() && !Robot.oi.wristMotorLock.get())
     {
     SmartDashboard.putString("Lift State", "Raising Lift");
-    leftReel.set(0.53);
-    rightReel.set(-0.51);
+    leftReel.set(0.5);
+    rightReel.set(-0.46);
     }else
     {
     leftReel.set(0);
@@ -58,11 +58,11 @@ public class Lift extends Subsystem
 
   public void LowerLift(boolean buttonState)
   {
-    if(buttonState)
+    if(buttonState && !Robot.oi.wristMotorLock.get())
     {
     SmartDashboard.putString("Lift State", "Lowering Lift");
-    leftReel.set(-0.47);
-    rightReel.set(0.51);
+    leftReel.set(-0.5);
+    rightReel.set(0.46);
     }else
     {
     leftReel.set(0);
