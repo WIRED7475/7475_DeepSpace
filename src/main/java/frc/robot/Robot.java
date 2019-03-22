@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DriveBase;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Lift;
+import frc.robot.subsystems.Pneumatics;
 
 
 
@@ -25,6 +26,7 @@ public class Robot extends TimedRobot {
   public static DriveBase driveBase = new DriveBase();
   public static Lift lift = new Lift();
   public static Intake intake = new Intake();
+  public static Pneumatics pneumatics = new Pneumatics();
   public static OI oi = new OI();
  
   public static Servo servo1 = new Servo(9);
@@ -46,7 +48,7 @@ public class Robot extends TimedRobot {
     CameraServer.getInstance().startAutomaticCapture(1);
 
    
-
+    Robot.pneumatics.compressor.setClosedLoopControl(true);
     
     
   }
@@ -130,6 +132,7 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledInit() 
   {
+    Robot.pneumatics.compressor.setClosedLoopControl(false);
   }
 
   @Override
@@ -159,7 +162,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() 
   {
-    
+    Robot.pneumatics.compressor.setClosedLoopControl(true);
     InitiateIntake();
     //if (m_autonomousCommand != null) {
     //  m_autonomousCommand.cancel();

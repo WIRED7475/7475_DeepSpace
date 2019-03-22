@@ -33,6 +33,10 @@ public class OI
   public JoystickButton wristMotorLower = new JoystickButton(OperatorController, 5);
 
 
+  public JoystickButton GripperButton = new JoystickButton(OperatorController, 2);
+  
+
+
 
 public OI()
 {
