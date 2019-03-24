@@ -30,7 +30,6 @@ public class Robot extends TimedRobot {
   public static Intake intake = new Intake();
   public static Pneumatics pneumatics = new Pneumatics();
   public static OI oi = new OI();
-  public static Encoder enc = new Encoder(1, 2, true, EncodingType.k4X);
   public static Servo servo1 = new Servo(9);
   public static AHRS navX = new AHRS(I2C.Port.kMXP);
   public static Timer timer = new Timer();
@@ -140,6 +139,12 @@ public class Robot extends TimedRobot {
     Robot.pneumatics.Mover.set(false);
   }
   
+  SmartDashboard.putNumber("LeftReelGetRaw", Robot.lift.leftReelEncoder.getRaw());
+  SmartDashboard.putNumber("RightReelGetRaw", Robot.lift.rightReelEncoder.getRaw());
+
+  SmartDashboard.putNumber("LeftReelCount", Robot.lift.leftReelEncoder.getRaw() / 2048);
+  SmartDashboard.putNumber("RightReelCount", Robot.lift.rightReelEncoder.getRaw() / 2048);
+
     }
 
   
@@ -190,7 +195,7 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic()
   {
     Scheduler.getInstance().run();
-    SmartDashboard.putNumber("Encoder", Robot.enc.getRaw());
+    
   }
 
   @Override

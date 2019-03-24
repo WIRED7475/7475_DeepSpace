@@ -7,9 +7,12 @@
 
 package frc.robot.subsystems;
 
+
 import edu.wpi.first.wpilibj.DigitalGlitchFilter;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -25,7 +28,15 @@ public class Lift extends Subsystem
 
     public  DigitalInput limit = new DigitalInput(0);
 
-  
+    public static Encoder leftReelEncoder = new Encoder(1, 2, true, EncodingType.k4X);
+    public static Encoder rightReelEncoder = new Encoder(3,4,true, EncodingType.k4X);
+    
+  public void Lift()
+  {
+    leftReelEncoder.reset();
+    rightReelEncoder.reset();
+  }
+
 
   @Override
   public void initDefaultCommand() 
