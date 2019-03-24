@@ -27,11 +27,7 @@ public static void moveSolenoids()
     gripperState = !gripperState;
 
   }
-  if(Robot.oi.OperatorController.getTriggerAxis(Hand.kLeft) > 0.5)
-  {
-    Mover.set(!moverState);
-    moverState = !moverState;
-  }
+  
 }
 
 

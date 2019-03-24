@@ -48,7 +48,7 @@ public class Robot extends TimedRobot {
     CameraServer.getInstance().startAutomaticCapture(1);
 
    
-    Robot.pneumatics.compressor.setClosedLoopControl(true);
+   
     
     
   }
@@ -112,15 +112,15 @@ public class Robot extends TimedRobot {
   
     double intakespeed = Robot.oi.OperatorController.getY(Hand.kLeft);
 
-  if(intakespeed < 0.5)
-  {
-    Robot.intake.leftIntake.set(1);
-    Robot.intake.rightIntake.set(1);
-  }
   if(intakespeed > 0.5)
   {
-    Robot.intake.leftIntake.set(0.25);
-    Robot.intake.rightIntake.set(-0.25);
+    Robot.intake.leftIntake.set(-Robot.oi.OperatorController.getY(Hand.kLeft));
+    Robot.intake.rightIntake.set(Robot.oi.OperatorController.getY(Hand.kLeft));
+  }
+  if(intakespeed < 0.5)
+  {
+    Robot.intake.leftIntake.set(Robot.oi.OperatorController.getY(Hand.kLeft) /4 );
+    Robot.intake.rightIntake.set(-(Robot.oi.OperatorController.getY(Hand.kLeft)/4));
   
   }
 
@@ -129,10 +129,19 @@ public class Robot extends TimedRobot {
     Robot.intake.leftIntake.set(0);
     Robot.intake.rightIntake.set(0);
   }
+
+  if(Robot.oi.OperatorController.getTriggerAxis(Hand.kLeft) > 0.1)
+  {
+    Robot.pneumatics.Mover.set(true);
+  }else if (Robot.oi.OperatorController.getTriggerAxis(Hand.kLeft) == 0 )
+  {
+    Robot.pneumatics.Mover.set(false);
+  }
+  
     }
 
   
-
+   
  
   @Override
   public void disabledInit() 
@@ -169,6 +178,7 @@ public class Robot extends TimedRobot {
   {
     Robot.pneumatics.compressor.setClosedLoopControl(true);
     InitiateIntake();
+    
     //if (m_autonomousCommand != null) {
     //  m_autonomousCommand.cancel();
   }
@@ -198,10 +208,10 @@ private static void InitiateIntake()
   
   
   currentActionTime = timer.get();
-  while(timer.get() - currentActionTime < 4)
+  while(timer.get() - currentActionTime < 1.3)
   {
   Robot.intake.wristMotor.set(0.8);
-    if(timer.get() - currentActionTime > 1.5)
+    if(timer.get() - currentActionTime > 0.8)
     {
       servo1.set(180);
     }
