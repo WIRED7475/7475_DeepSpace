@@ -139,10 +139,13 @@ public class Robot extends TimedRobot {
     Robot.pneumatics.Mover.set(false);
   }
   
+  Robot.lift.leftReelRotations = Robot.lift.leftReelEncoder.getRaw() / 2048;
+  Robot.lift.rightReelRotations = Robot.lift.rightReelEncoder.getRaw() / 2048;
+
   SmartDashboard.putNumber("LeftReelGetRaw", Robot.lift.leftReelEncoder.getRaw());
   SmartDashboard.putNumber("RightReelGetRaw", Robot.lift.rightReelEncoder.getRaw());
 
-  SmartDashboard.putNumber("LeftReelCount", Robot.lift.leftReelEncoder.getRaw() / 2048);
+  SmartDashboard.putNumber("LeftReelCount", Robot.lift.leftReelRotations);
   SmartDashboard.putNumber("RightReelCount", Robot.lift.rightReelEncoder.getRaw() / 2048);
 
     }

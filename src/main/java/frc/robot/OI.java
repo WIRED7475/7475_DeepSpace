@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.Brake;
 import frc.robot.commands.DriveStraight;
+import frc.robot.commands.LiftToThirdLevel;
 import frc.robot.commands.LowerLift;
 import frc.robot.commands.NeutralWrist;
 import frc.robot.commands.PneumaticsHatch;
@@ -36,6 +37,8 @@ public class OI
 
 
   public JoystickButton GripperButton = new JoystickButton(OperatorController, 2);
+
+  public JoystickButton RaiseToThirdLevelButton = new JoystickButton(DriveStick, 7);
   
 
 
@@ -55,5 +58,7 @@ public OI()
     wristMotorLock.whenPressed(new NeutralWrist());
   
     GripperButton.whenPressed(new PneumaticsHatch());
+
+    RaiseToThirdLevelButton.whenPressed(new LiftToThirdLevel());
     }
 }
