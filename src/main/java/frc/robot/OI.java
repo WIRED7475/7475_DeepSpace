@@ -9,7 +9,6 @@ import frc.robot.commands.DriveStraight;
 import frc.robot.commands.LiftToThirdLevel;
 import frc.robot.commands.LowerLift;
 import frc.robot.commands.NeutralWrist;
-import frc.robot.commands.PneumaticsHatch;
 import frc.robot.commands.RaiseLift;
 import frc.robot.commands.Rotate;
 import frc.robot.commands.ShootBall;
@@ -57,8 +56,13 @@ public OI()
     
     wristMotorLock.whenPressed(new NeutralWrist());
   
+<<<<<<< HEAD
     GripperButton.whenPressed(new PneumaticsHatch());
 
     RaiseToThirdLevelButton.whenPressed(new LiftToThirdLevel());
     }
+=======
+
+  }
+>>>>>>> parent of 0fbf76b... Waterloo 2019
 }

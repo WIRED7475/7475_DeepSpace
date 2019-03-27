@@ -36,10 +36,8 @@ public class DriveBase extends Subsystem
   }
   public void joystickDrive(Joystick joystick)
   {
-    
-    double Throttle = 1 - ( joystick.getThrottle() / 1);
     robotDrive.setSafetyEnabled(false);
-    robotDrive.arcadeDrive(-joystick.getY() * Throttle, joystick.getX() * Throttle);
+    robotDrive.arcadeDrive(-joystick.getY(), joystick.getX());
   }
 
   public void DriveStraight(Joystick stick, AHRS navX, double startAngle)
