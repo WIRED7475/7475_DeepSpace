@@ -16,15 +16,11 @@ import frc.robot.commands.JoystickDrive;
 public class DriveBase extends Subsystem 
 {
 
-  public Spark blMotor = new Spark(RobotMap.blMotor_num);
-  public Spark flMotor = new Spark(RobotMap.flMotor_num);
-  public SpeedControllerGroup leftMotorGroup= new SpeedControllerGroup(flMotor, blMotor);
+  public Spark rightDrive = new Spark(RobotMap.rightDrive_num);
+  public Spark leftDrive = new Spark(RobotMap.leftDrive_num);
+ 
 
-  public Spark brMotor = new Spark(RobotMap.brMotor_num);
-  public Spark frMotor = new Spark(RobotMap.frMotor_num); 
-  public SpeedControllerGroup rightMotorGroup= new SpeedControllerGroup(frMotor, brMotor);
-
-  public DifferentialDrive robotDrive = new DifferentialDrive(leftMotorGroup, rightMotorGroup);
+  public DifferentialDrive robotDrive = new DifferentialDrive(rightDrive, leftDrive);
 
    
   @Override
@@ -43,9 +39,7 @@ public class DriveBase extends Subsystem
   public void DriveStraight(Joystick stick, AHRS navX, double startAngle)
   {
     double kP = 0.5;
-    SmartDashboard.putNumber("Current Angle", navX.getAngle());
     double error = startAngle - navX.getAngle();
-    SmartDashboard.putNumber("Angle Error", error);
     robotDrive.arcadeDrive(-stick.getY(), error * kP);
    
   }
@@ -61,10 +55,8 @@ public class DriveBase extends Subsystem
 
   public void Brake()
   {
-    blMotor.set(0);
-    flMotor.set(0);
-    brMotor.set(0);
-    frMotor.set(0);
+    rightDrive.stopMotor();
+    leftDrive.stopMotor();
   }
 
 

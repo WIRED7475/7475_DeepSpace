@@ -10,10 +10,10 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class LiftToThirdLevel extends Command {
-  public LiftToThirdLevel() {
+public class LiftToFirstLevel extends Command {
+  public LiftToFirstLevel() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.lift);
+   requires(Robot.lift);
   }
 
   // Called just before this Command runs the first time
@@ -23,8 +23,9 @@ public class LiftToThirdLevel extends Command {
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() {
-    Robot.lift.GroundToThird();
+  protected void execute() 
+  {
+    Robot.lift.GroundToFirst();
   }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -23,7 +23,6 @@ static double startAngle;
   protected void initialize() 
   {
     startAngle = Robot.navX.getAngle();
-    SmartDashboard.putNumber("StraightAngle", startAngle);
     
   }
 

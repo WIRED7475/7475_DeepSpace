@@ -6,9 +6,12 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.Brake;
 import frc.robot.commands.DriveStraight;
+import frc.robot.commands.LiftToFirstLevel;
+import frc.robot.commands.LiftToSecondLevel;
 import frc.robot.commands.LiftToThirdLevel;
 import frc.robot.commands.LowerLift;
 import frc.robot.commands.NeutralWrist;
+import frc.robot.commands.PneumaticsHatch;
 import frc.robot.commands.RaiseLift;
 import frc.robot.commands.Rotate;
 import frc.robot.commands.ShootBall;
@@ -37,7 +40,13 @@ public class OI
 
   public JoystickButton GripperButton = new JoystickButton(OperatorController, 2);
 
-  public JoystickButton RaiseToThirdLevelButton = new JoystickButton(DriveStick, 7);
+  public JoystickButton RaiseToFirstLevelButton = new JoystickButton(DriveStick, 7);
+  public JoystickButton RaiseToSecondLevelButton = new JoystickButton(DriveStick, 8);
+  public JoystickButton RaiseToThirdLevelButton = new JoystickButton(DriveStick, 9);
+
+  public JoystickButton GroundLift = new JoystickButton(DriveStick, 10);
+
+
   
 
 
@@ -56,13 +65,17 @@ public OI()
     
     wristMotorLock.whenPressed(new NeutralWrist());
   
-<<<<<<< HEAD
-    GripperButton.whenPressed(new PneumaticsHatch());
 
+    GripperButton.whenPressed(new PneumaticsHatch());
+ 
+
+    RaiseToFirstLevelButton.whenPressed(new LiftToFirstLevel());
+    RaiseToSecondLevelButton.whenPressed(new LiftToSecondLevel());
     RaiseToThirdLevelButton.whenPressed(new LiftToThirdLevel());
+
     }
-=======
+
 
   }
->>>>>>> parent of 0fbf76b... Waterloo 2019
-}
+
+

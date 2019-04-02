@@ -58,23 +58,49 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() 
   {
+
+    Robot.lift.leftReelRotations = Robot.lift.leftReelEncoder.getRaw() / 2048;
+    Robot.lift.rightReelRotations = Robot.lift.rightReelEncoder.getRaw() / 2048;
  
 
     ///////////////////setting variables on dashboard
-    if(!Robot.oi.liftButton.get() && !Robot.oi.lowerButton.get())
+    if(Robot.lift.rightReel.get() == 0)
     {
       SmartDashboard.putString("Lift State", "Lift Immobile");
+    } 
+    else  if(Robot.lift.rightReel.get() < 0)
+    {
+      SmartDashboard.putString("Lift State", "Lift Rising!");
     }
+    else if(Robot.lift.rightReel.get() > 0)
+    SmartDashboard.putString("Lift State", "Lift Lowering");
     
-    if(!Robot.oi.shootOutButton.get() && !Robot.oi.takeInButton.get())
+
+
+    if(Robot.intake.leftIntake.get() == 0)
     {
       SmartDashboard.putString("Claw State", "Claw Immobile");
+    }else if(Robot.intake.leftIntake.get() > 0)
+    {
+      SmartDashboard.putString("Claw State", "Claw Shooting Out!");
+    }else if(Robot.intake.leftIntake.get() < 0)
+    {
+      SmartDashboard.putString("Claw State", "Claw taking In!");
     }
 
-    SmartDashboard.putBoolean("Top LimitSwitch", Robot.lift.limit.get());
+    SmartDashboard.putBoolean("Top LimitSwitch", Robot.lift.Toplimit.get());
+    SmartDashboard.putBoolean("Bottom LimitSwitch", Robot.lift.Bottomlimit.get());
+
+    SmartDashboard.putNumber("LeftReelGetRaw", Robot.lift.leftReelEncoder.getRaw());
+    SmartDashboard.putNumber("RightReelGetRaw", Robot.lift.rightReelEncoder.getRaw());
+  
+    SmartDashboard.putNumber("LeftReelCount", Robot.lift.leftReelRotations);
+    SmartDashboard.putNumber("RightReelCount", Robot.lift.rightReelRotations);
     
 
     ////////////////////
+
+
     if(Robot.oi.StopAllButton.get() == true)
     {
       Robot.intake.leftIntake.stopMotor();
@@ -83,10 +109,8 @@ public class Robot extends TimedRobot {
       Robot.lift.leftReel.stopMotor();
       Robot.lift.rightReel.stopMotor();
 
-      Robot.driveBase.blMotor.stopMotor();
-      Robot.driveBase.brMotor.stopMotor();
-      Robot.driveBase.flMotor.stopMotor();
-      Robot.driveBase.frMotor.stopMotor();
+      Robot.driveBase.rightDrive.stopMotor();
+      Robot.driveBase.leftDrive.stopMotor();
       Robot.intake.wristMotor.stopMotor();
 
     }
@@ -130,7 +154,6 @@ public class Robot extends TimedRobot {
     Robot.intake.leftIntake.set(0);
     Robot.intake.rightIntake.set(0);
   }
-<<<<<<< HEAD
 
   if(Robot.oi.OperatorController.getTriggerAxis(Hand.kLeft) > 0.1)
   {
@@ -139,18 +162,18 @@ public class Robot extends TimedRobot {
   {
     Robot.pneumatics.Mover.set(false);
   }
+
+
+  if(Robot.lift.Bottomlimit.get())
+  {
+    Robot.lift.rightReelEncoder.reset();
+    Robot.lift.leftReelEncoder.reset();
+
+  }
+
   
-  Robot.lift.leftReelRotations = Robot.lift.leftReelEncoder.getRaw() / 2048;
-  Robot.lift.rightReelRotations = Robot.lift.rightReelEncoder.getRaw() / 2048;
 
-  SmartDashboard.putNumber("LeftReelGetRaw", Robot.lift.leftReelEncoder.getRaw());
-  SmartDashboard.putNumber("RightReelGetRaw", Robot.lift.rightReelEncoder.getRaw());
 
-  SmartDashboard.putNumber("LeftReelCount", Robot.lift.leftReelRotations);
-  SmartDashboard.putNumber("RightReelCount", Robot.lift.rightReelEncoder.getRaw() / 2048);
-
-=======
->>>>>>> parent of 0fbf76b... Waterloo 2019
     }
 
   
@@ -233,12 +256,6 @@ private static void InitiateIntake()
   Robot.intake.wristMotor.set(0.0);
 
 }
-public static void setupPID(basePID pid, double target) {
-  pid.reset();
-  pid.setTolerance(1);
-  pid.setOutputRange(0.0, 0.5);
-  pid.setInputRange(0, 110);
-  pid.setPoint(target);
-}
+
 
 }
