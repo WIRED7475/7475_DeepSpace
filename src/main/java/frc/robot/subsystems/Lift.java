@@ -114,7 +114,9 @@ public class Lift extends Subsystem
           rightReel.set(-rightReelSpeed );
           leftReel.set(0.5);
         }
-    } 
+    }
+    leftReel.set(0);
+    rightReel.set(0); 
     
   }
   public static void GroundToSecond()
@@ -132,6 +134,9 @@ public class Lift extends Subsystem
           leftReel.set(0.5);
         }
     } 
+    leftReel.set(0);
+    rightReel.set(0);
+
     
     
   }
@@ -150,6 +155,8 @@ public class Lift extends Subsystem
           leftReel.set(0.5);
         }
     } 
+    leftReel.set(0);
+    rightReel.set(0);
     
     
   }

@@ -1,0 +1,32 @@
+XBOX CONTROLLER---------
+
+A- Lower Lift
+Y- Raise Lift
+B - Pneumatics Gripper
+
+LeftStickPress - Stop All
+
+Right Bumper - Set Left Trigger to raising wrist motor
+Left Bumper (Hold) - Lock Wrist Motor at current level
+
+Left Trigger - Move Pneumatics Forward/Backwards ( Hold to push out)
+
+Left Joystick - Intake
+
+------------------------------------------------------
+
+
+DRIVER JOYSTICK-----------
+
+Trigger - Brake and Point Turn
+2 (Thumb Button) - Brake
+
+7 - Lift Ground to First Level
+8 - Lift Ground to Second Level
+9 - Lift Ground to Third Level
+10 - Lower Lift to Ground
+
+
+
+----------------------------------------
+

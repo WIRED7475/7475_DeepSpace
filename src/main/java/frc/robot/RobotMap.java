@@ -21,7 +21,7 @@ public class RobotMap
 
     //other
     public static int servoPort_num = 7;
-    public static int topLimit_num = 1;
+    public static int topLimit_num = 6;
     public static int bottomLimt_num = 5;
     
 

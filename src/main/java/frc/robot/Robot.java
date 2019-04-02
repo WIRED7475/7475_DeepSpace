@@ -235,7 +235,6 @@ public class Robot extends TimedRobot {
 
 //user made functions
 
-//Servo Movement
 
 private static void InitiateIntake()
 {
@@ -244,13 +243,10 @@ private static void InitiateIntake()
   
   
   currentActionTime = timer.get();
-  while(timer.get() - currentActionTime < 4)
+  while(timer.get() - currentActionTime < 1)
   {
   Robot.intake.wristMotor.set(0.8);
-    if(timer.get() - currentActionTime > 1.5)
-    {
-      servo1.set(180);
-    }
+    
   }
  
   Robot.intake.wristMotor.set(0.0);
