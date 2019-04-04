@@ -23,14 +23,14 @@ public static void moveSolenoids()
 {
   if(Robot.oi.GripperButton.get())
   {
-    Grippers.set(!gripperState);
-    gripperState = !gripperState;
+    Grippers.set(Robot.oi.GripperButton.get());
+  
 
   }
   if(Robot.oi.OperatorController.getTriggerAxis(Hand.kLeft) > 0.5)
   {
-    Mover.set(!moverState);
-    moverState = !moverState;
+    Mover.set(Robot.oi.OperatorController.getTriggerAxis(Hand.kLeft) > 0.5);
+
   }
 }
 

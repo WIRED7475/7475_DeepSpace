@@ -8,9 +8,12 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.commands.TakeInBall;
 
 
 public class Intake extends Subsystem
@@ -26,27 +29,27 @@ public class Intake extends Subsystem
   @Override
   public void initDefaultCommand() 
   {
-   
+   setDefaultCommand(new TakeInBall());
   }
 
-  public void TakeIn(boolean buttonState)
+  public void TakeIn()
   {
-    if(buttonState)
-    {
-    leftIntake.set(-0.25);
-    rightIntake.set(0.25);
-    }
-    else
-    {
-      leftIntake.set(0);
-      rightIntake.set(0);
-    }
+    double intakespeed = Robot.oi.OperatorController.getY(Hand.kLeft);
+    Robot.intake.leftIntake.set(-intakespeed);
+    Robot.intake.rightIntake.set(intakespeed);
 
+    if(intakespeed < 0)
+    {
+      Robot.intake.leftIntake.set(-intakespeed/4);
+      Robot.intake.rightIntake.set(intakespeed/4);
+    }
+    
   }
+  
 
   public void ShootOut(boolean buttonState)
   {
-    if(buttonState)
+   /* if(buttonState)
     {
     leftIntake.set(1);
     rightIntake.set(-1);
@@ -57,6 +60,7 @@ public class Intake extends Subsystem
       leftIntake.set(0);
       rightIntake.set(0);
     }
+    */
   }
 
   public void NeutralWrist()

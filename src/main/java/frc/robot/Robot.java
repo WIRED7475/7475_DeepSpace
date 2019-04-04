@@ -135,25 +135,29 @@ public class Robot extends TimedRobot {
     }
       
   
-    double intakespeed = Robot.oi.OperatorController.getY(Hand.kLeft);
-
-  if(intakespeed < 0.5)
+   
+/*
+  if(intakespeed > 0.2)
   {
-    Robot.intake.leftIntake.set(1);
-    Robot.intake.rightIntake.set(1);
+     
+    Robot.intake.leftIntake.set(-intakespeed);
+    Robot.intake.rightIntake.set(intakespeed);
   }
-  if(intakespeed > 0.5)
+  if(intakespeed < -0.2)
   {
-    Robot.intake.leftIntake.set(0.25);
-    Robot.intake.rightIntake.set(-0.25);
+   
+    Robot.intake.leftIntake.set(intakespeed / 4);
+    Robot.intake.rightIntake.set(-intakespeed / 4);
   
   }
 
-  if(intakespeed == 0 )
+  else
   {
     Robot.intake.leftIntake.set(0);
     Robot.intake.rightIntake.set(0);
   }
+
+  */
 
   if(Robot.oi.OperatorController.getTriggerAxis(Hand.kLeft) > 0.1)
   {
@@ -213,7 +217,7 @@ public class Robot extends TimedRobot {
   public void teleopInit() 
   {
     Robot.pneumatics.compressor.setClosedLoopControl(true);
-    InitiateIntake();
+   // InitiateIntake();
     //if (m_autonomousCommand != null) {
     //  m_autonomousCommand.cancel();
   }

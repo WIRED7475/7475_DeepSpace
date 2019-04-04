@@ -44,6 +44,7 @@ public class Lift extends Subsystem
     public static double RotationsToThirdLvl = 25;
 
     public static double rightReelSpeed = 0.46;
+    public static double leftReelSpeed = 0.5;
 
 
    
@@ -67,7 +68,7 @@ public class Lift extends Subsystem
    
     if(buttonState && !Toplimit.get() && !Robot.oi.wristMotorLock.get())
     {
-    leftReel.set(0.5);
+    leftReel.set(leftReelSpeed);
     rightReel.set(-rightReelSpeed);
     }else
     {
@@ -89,7 +90,7 @@ public class Lift extends Subsystem
 
     if(buttonState && !Robot.oi.wristMotorLock.get() && !Bottomlimit.get())
     {
-    leftReel.set(-0.5);
+    leftReel.set(-leftReelSpeed);
     rightReel.set(rightReelSpeed);
     }else
     {
@@ -149,7 +150,7 @@ public class Lift extends Subsystem
         if(RotationsToThirdLvl - rightReelRotations < 10) //when getting close
         {
            rightReel.set(-0.2);
-           leftReel.set(0.2);
+              leftReel.set(0.2);
         }else{
           rightReel.set(-rightReelSpeed);
           leftReel.set(0.5);

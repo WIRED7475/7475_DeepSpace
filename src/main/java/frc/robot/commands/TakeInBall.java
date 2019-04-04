@@ -26,7 +26,7 @@ public class TakeInBall extends Command {
   @Override
   protected void execute() 
   {
-    //
+    Robot.intake.TakeIn();
     
     
   }
