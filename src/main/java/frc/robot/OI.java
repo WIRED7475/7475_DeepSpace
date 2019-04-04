@@ -38,7 +38,6 @@ public class OI
   public JoystickButton wristMotorNeutral = new JoystickButton(OperatorController, 5);
 
 
-  public JoystickButton GripperButton = new JoystickButton(OperatorController, 2);
 
   public JoystickButton RaiseToFirstLevelButton = new JoystickButton(DriveStick, 7);
   public JoystickButton RaiseToSecondLevelButton = new JoystickButton(DriveStick, 8);
@@ -65,8 +64,6 @@ public OI()
     
     wristMotorLock.whenPressed(new NeutralWrist());
   
-
-    GripperButton.whenPressed(new PneumaticsHatch());
  
 
     RaiseToFirstLevelButton.whenPressed(new LiftToFirstLevel());
