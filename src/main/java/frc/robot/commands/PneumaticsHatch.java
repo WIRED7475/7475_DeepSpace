@@ -25,7 +25,7 @@ public class PneumaticsHatch extends Command {
   @Override
   protected void execute() {
 
-    Robot.pneumatics.moveSolenoids();
+    Robot.pneumatics.moveGrippers();
   }
 
   // Make this return true when this Command no longer needs to run execute()

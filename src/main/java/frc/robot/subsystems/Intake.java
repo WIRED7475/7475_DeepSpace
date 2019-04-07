@@ -13,7 +13,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.commands.TakeInBall;
+import frc.robot.commands.IntakeCommand;
+
 
 
 public class Intake extends Subsystem
@@ -29,40 +30,25 @@ public class Intake extends Subsystem
   @Override
   public void initDefaultCommand() 
   {
-   setDefaultCommand(new TakeInBall());
+   setDefaultCommand(new IntakeCommand());
+  
   }
 
-  public void TakeIn()
+  public static void IntakeCmd()
   {
-    double intakespeed = Robot.oi.OperatorController.getY(Hand.kLeft);
-    Robot.intake.leftIntake.set(-intakespeed);
-    Robot.intake.rightIntake.set(intakespeed);
+    Robot.intake.leftIntake.set(-Robot.oi.OperatorController.getY(Hand.kLeft));
+    Robot.intake.rightIntake.set(Robot.oi.OperatorController.getY(Hand.kLeft));
 
-    if(intakespeed < 0)
+    if( Robot.oi.OperatorController.getY(Hand.kLeft) < 0)
     {
-      Robot.intake.leftIntake.set(-intakespeed/4);
-      Robot.intake.rightIntake.set(intakespeed/4);
+      Robot.intake.leftIntake.set(-Robot.oi.OperatorController.getY(Hand.kLeft)/4);
+      Robot.intake.rightIntake.set(Robot.oi.OperatorController.getY(Hand.kLeft)/4);
     }
     
   }
   
 
-  public void ShootOut(boolean buttonState)
-  {
-   /* if(buttonState)
-    {
-    leftIntake.set(1);
-    rightIntake.set(-1);
-    
-    }
-    else
-    {
-      leftIntake.set(0);
-      rightIntake.set(0);
-    }
-    */
-  }
-
+ 
   public void NeutralWrist()
   {
     wristMotor.set(0.2);

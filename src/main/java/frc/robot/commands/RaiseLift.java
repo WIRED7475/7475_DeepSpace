@@ -8,12 +8,11 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
 public class RaiseLift extends Command {
   public RaiseLift() {
-  
+    // Use requires() here to declare subsystem dependencies
     requires(Robot.lift);
   }
 
@@ -24,10 +23,8 @@ public class RaiseLift extends Command {
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() 
-  {
-    Robot.lift.RaiseLift(Robot.oi.liftButton.get());
-    
+  protected void execute() {
+  Robot.lift.RaiseLiftCmd();
   }
 
   // Make this return true when this Command no longer needs to run execute()

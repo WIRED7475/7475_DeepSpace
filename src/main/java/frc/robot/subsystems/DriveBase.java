@@ -37,15 +37,7 @@ public class DriveBase extends Subsystem
     robotDrive.arcadeDrive(-joystick.getY() * throttle, joystick.getX() * throttle);
   }
 
-  public void DriveStraight(Joystick stick, AHRS navX, double startAngle)
-  {
-    double throttle = (1 - stick.getThrottle()) / 1;
-    double kP = 0.5;
-    double error = startAngle - navX.getAngle();
-    robotDrive.arcadeDrive(-stick.getY() * throttle, error * kP);
-   
-  }
-
+ 
   public void Rotate(Joystick joystick, boolean buttonState)
   {
     double throttle = (1 - joystick.getThrottle()) / 1;

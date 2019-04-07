@@ -5,17 +5,12 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.Brake;
-import frc.robot.commands.DriveStraight;
-import frc.robot.commands.LiftToFirstLevel;
-import frc.robot.commands.LiftToSecondLevel;
-import frc.robot.commands.LiftToThirdLevel;
 import frc.robot.commands.LowerLift;
 import frc.robot.commands.NeutralWrist;
 import frc.robot.commands.PneumaticsHatch;
 import frc.robot.commands.RaiseLift;
 import frc.robot.commands.Rotate;
-import frc.robot.commands.ShootBall;
-import frc.robot.commands.TakeInBall;
+
 
 public class OI 
 {
@@ -54,21 +49,14 @@ public OI()
 {
     stopButton.whileHeld(new Brake());
     RotateButton.whileHeld(new Rotate());
-    driveStraightBurron.whileHeld((new DriveStraight()));
+   
 
-    liftButton.whenPressed(new RaiseLift());
-    lowerButton.whenPressed(new LowerLift());
-
-    takeInButton.whenPressed(new TakeInBall());
-    shootOutButton.whenPressed(new ShootBall());
-    
+    liftButton.whileHeld(new RaiseLift()); 
+    lowerButton.whileHeld(new LowerLift());
+  
     wristMotorLock.whenPressed(new NeutralWrist());
   
- 
 
-    RaiseToFirstLevelButton.whenPressed(new LiftToFirstLevel());
-    RaiseToSecondLevelButton.whenPressed(new LiftToSecondLevel());
-    RaiseToThirdLevelButton.whenPressed(new LiftToThirdLevel());
 
     }
 

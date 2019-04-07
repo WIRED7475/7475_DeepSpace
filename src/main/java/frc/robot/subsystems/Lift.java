@@ -15,12 +15,15 @@ import edu.wpi.first.wpilibj.PIDBase;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.basePID;
+import frc.robot.commands.RaiseLift;
+
 
 
 public class Lift extends Subsystem 
@@ -39,12 +42,10 @@ public class Lift extends Subsystem
     public static double leftReelRotations;
     public static double rightReelRotations;
 
-    public static double RotationsToFirstLvl = 5;
-    public static double RotationsToSecondLvl = 15;
-    public static double RotationsToThirdLvl = 25;
+  
 
-    public static double rightReelSpeed = 0.46;
-    public static double leftReelSpeed = 0.5;
+    public static double rightReelSpeed = 0.61;
+    public static double leftReelSpeed = 0.7; 
 
 
    
@@ -54,129 +55,46 @@ public class Lift extends Subsystem
   @Override
   public void initDefaultCommand() 
   {
-    
+   setDefaultCommand(new RaiseLift());
   }
 
-  public void RaiseLift(boolean buttonState)
+  public static void RaiseLiftCmd()
   {
-   if(Toplimit.get())
-   {
-    leftReel.set(0);
-     rightReel.set(0);
-     return;
-    }
-   
-    if(buttonState && !Toplimit.get() && !Robot.oi.wristMotorLock.get())
+    if(!Robot.oi.OperatorController.getYButton())
     {
-    leftReel.set(leftReelSpeed);
-    rightReel.set(-rightReelSpeed);
-    }else
-    {
-    leftReel.set(0);
-    rightReel.set(0);
-    
-    }
-
-  }
-
-  public void LowerLift(boolean buttonState)
-  { 
-    if(Bottomlimit.get())
-   {
-    leftReel.set(0);
-     rightReel.set(0);
-     return;
-    }
-
-    if(buttonState && !Robot.oi.wristMotorLock.get() && !Bottomlimit.get())
-    {
-    leftReel.set(-leftReelSpeed);
-    rightReel.set(rightReelSpeed);
-    }else
-    {
-    leftReel.set(0);
-    rightReel.set(0);
-    }
-
-  }
-
-  public static void GroundToFirst()
-  {
-    
-    rightReelRotations = rightReelEncoder.getRaw()/2048;
-    while(rightReelRotations <= RotationsToFirstLvl && !Toplimit.get() )
-    {
-      rightReelRotations = rightReelEncoder.getRaw()/2048;
-        if(RotationsToFirstLvl - rightReelRotations < 10) //when getting close
-        {
-           rightReel.set(-0.2);
-           leftReel.set(0.2);
-        }else{
-          rightReel.set(-rightReelSpeed );
-          leftReel.set(0.5);
-        }
-    }
-    leftReel.set(0);
-    rightReel.set(0); 
-    
-  }
-  public static void GroundToSecond()
-  {
-    rightReelRotations = rightReelEncoder.getRaw()/2048;
-    while(rightReelRotations <= RotationsToSecondLvl && !Toplimit.get() )
-    {
-      rightReelRotations = rightReelEncoder.getRaw()/2048;
-        if(RotationsToSecondLvl - rightReelRotations < 10) //when getting close
-        {
-           rightReel.set(-0.2);
-           leftReel.set(0.2);
-        }else{
-          rightReel.set(-rightReelSpeed);
-          leftReel.set(0.5);
-        }
-    } 
-    leftReel.set(0);
-    rightReel.set(0);
-
-    
-    
-  }
-  public static void GroundToThird()
-  {
-    rightReelRotations = rightReelEncoder.getRaw()/2048;
-    while(!Toplimit.get())
-    {
-      rightReelRotations = rightReelEncoder.getRaw()/2048;
-        if(RotationsToThirdLvl - rightReelRotations < 10) //when getting close
-        {
-           rightReel.set(-0.2);
-              leftReel.set(0.2);
-        }else{
-          rightReel.set(-rightReelSpeed);
-          leftReel.set(0.5);
-        }
-    } 
-    leftReel.set(0);
-    rightReel.set(0);
-    
-    
-  }
-
-
-  public static void GroundLift()
-  {
-    if(Bottomlimit.get())
-    {
-     leftReel.set(0);
+      leftReel.set(0);
       rightReel.set(0);
       return;
-     }
+    }
+  if(Robot.oi.OperatorController.getYButton() && !Toplimit.get() && !Robot.oi.wristMotorLock.get()) 
+    {
+      leftReel.set(0.7);
+      rightReel.set(-0.61);
+    }
+    else{
+      leftReel.set(0);
+      leftReel.set(0);
+    }
+  }
+  
 
-     while(!Bottomlimit.get())
-     {
-       leftReel.set(-0.5);
-       leftReel.set(0.5);
-     }
+  public static void LowerLiftCmd()
+  {
+    if(!Robot.oi.OperatorController.getAButton())
+    {
+      leftReel.set(0);
+      rightReel.set(0);
+      return;
+    }
+    if(Robot.oi.OperatorController.getAButton() && !Bottomlimit.get() && !Robot.oi.wristMotorLock.get()) 
+    {
+      leftReel.set(-0.7);
+      rightReel.set(0.61);
+    }
+    else{
+      leftReel.set(0);
+      leftReel.set(0);
+    }
   }
   
 }

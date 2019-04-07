@@ -19,18 +19,9 @@ public static boolean moverState = false;
 public static Compressor compressor = new Compressor(0);
 
 
-public static void moveSolenoids()
+public static void moveGrippers()
 {
-  
     Grippers.set(Robot.oi.OperatorController.getBButton());
-  
-
-  
-  if(Robot.oi.OperatorController.getTriggerAxis(Hand.kLeft) > 0.5)
-  {
-    Mover.set(Robot.oi.OperatorController.getTriggerAxis(Hand.kLeft) > 0.5);
-
-  }
 }
 
 

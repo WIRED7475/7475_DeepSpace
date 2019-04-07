@@ -116,48 +116,30 @@ public class Robot extends TimedRobot {
     }
 
 
-    if(Robot.oi.wristMotorLock.get())
-    {
+      if(Robot.oi.wristMotorLock.get())
+      {
       if(Robot.oi.OperatorController.getAButton())
       {
         Robot.intake.wristMotor.set(-0.5);
-        SmartDashboard.putString("WristMotorState", "GoingDown");
+        
       }
-      if(Robot.oi.OperatorController.getYButton())
+      else if(Robot.oi.OperatorController.getYButton())
       {
         Robot.intake.wristMotor.set(0.8);
-        SmartDashboard.putString("WristMotorState", "GoingUp");
+        
+      }else
+      {
+        Robot.intake.wristMotor.set(0.2);
       }
-    }else
-    {
-      Robot.intake.wristMotor.set(0.0);
-      SmartDashboard.putString("WristMotorState", "No Power");
-    }
+     }else
+     {
+       Robot.intake.wristMotor.set(0);
+     }
+    
       
   
    
-/*
-  if(intakespeed > 0.2)
-  {
-     
-    Robot.intake.leftIntake.set(-intakespeed);
-    Robot.intake.rightIntake.set(intakespeed);
-  }
-  if(intakespeed < -0.2)
-  {
-   
-    Robot.intake.leftIntake.set(intakespeed / 4);
-    Robot.intake.rightIntake.set(-intakespeed / 4);
-  
-  }
 
-  else
-  {
-    Robot.intake.leftIntake.set(0);
-    Robot.intake.rightIntake.set(0);
-  }
-
-  */
 
   if(Robot.oi.OperatorController.getTriggerAxis(Hand.kLeft) > 0.1)
   {
