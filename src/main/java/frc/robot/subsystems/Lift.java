@@ -1,10 +1,3 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 package frc.robot.subsystems;
 
 
@@ -34,18 +27,10 @@ public class Lift extends Subsystem
 
     public  static DigitalInput Toplimit = new DigitalInput(RobotMap.topLimit_num);
     public  static DigitalInput Bottomlimit = new DigitalInput(RobotMap.bottomLimt_num);
-
-
-    public static Encoder leftReelEncoder = new Encoder(1, 2, true, EncodingType.k4X);
-    public static Encoder rightReelEncoder = new Encoder(3,4,true, EncodingType.k4X);
-
-    public static double leftReelRotations;
-    public static double rightReelRotations;
-
   
 
-    public static double rightReelSpeed = 0.61;
-    public static double leftReelSpeed = 0.7; 
+    public static double rightReelSpeed = 0.48;
+    public static double leftReelSpeed = 0.5; 
 
 
    
@@ -68,8 +53,8 @@ public class Lift extends Subsystem
     }
   if(Robot.oi.OperatorController.getYButton() && !Toplimit.get() && !Robot.oi.wristMotorLock.get()) 
     {
-      leftReel.set(0.7);
-      rightReel.set(-0.61);
+      leftReel.set(leftReelSpeed);
+      rightReel.set(-rightReelSpeed);
     }
     else{
       leftReel.set(0);
@@ -88,8 +73,8 @@ public class Lift extends Subsystem
     }
     if(Robot.oi.OperatorController.getAButton() && !Bottomlimit.get() && !Robot.oi.wristMotorLock.get()) 
     {
-      leftReel.set(-0.7);
-      rightReel.set(0.61);
+      leftReel.set(-leftReelSpeed);
+      rightReel.set(rightReelSpeed);
     }
     else{
       leftReel.set(0);

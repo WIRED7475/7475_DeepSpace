@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.Brake;
 import frc.robot.commands.LowerLift;
 import frc.robot.commands.NeutralWrist;
-import frc.robot.commands.PneumaticsHatch;
 import frc.robot.commands.RaiseLift;
 import frc.robot.commands.Rotate;
 

@@ -24,15 +24,18 @@ import frc.robot.subsystems.Pneumatics;
 
 
 public class Robot extends TimedRobot {
-  
+public static Autonomus auto = new Autonomus();
   public static DriveBase driveBase = new DriveBase();
   public static Lift lift = new Lift();
   public static Intake intake = new Intake();
-  public static Pneumatics pneumatics = new Pneumatics();
+ public static Pneumatics pneumatics = new Pneumatics();
   public static OI oi = new OI();
   public static Servo servo1 = new Servo(9);
   public static AHRS navX = new AHRS(I2C.Port.kMXP);
   public static Timer timer = new Timer();
+  public static Encoder leftReelEncoder = new Encoder(0, 1, false , EncodingType.k4X);
+
+  public static Encoder rightReelEncoder = new Encoder(2,3,false, EncodingType.k4X);
   
 
 
@@ -48,9 +51,19 @@ public class Robot extends TimedRobot {
     CameraServer.getInstance().startAutomaticCapture(0);
     CameraServer.getInstance().startAutomaticCapture(1);
 
-   
     Robot.pneumatics.compressor.setClosedLoopControl(true);
-    
+    leftReelEncoder.setDistancePerPulse(2048);
+    leftReelEncoder.setMaxPeriod(0.1);
+    leftReelEncoder.setMinRate(10);
+    leftReelEncoder.setSamplesToAverage(7);
+    leftReelEncoder.setReverseDirection(true);
+   
+    rightReelEncoder.setDistancePerPulse(2048);
+    rightReelEncoder.setMaxPeriod(0.1);
+    rightReelEncoder.setMinRate(10);
+    rightReelEncoder.setSamplesToAverage(7);
+    rightReelEncoder.setReverseDirection(true);
+
     
   }
 
@@ -59,11 +72,7 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() 
   {
 
-    Robot.lift.leftReelRotations = Robot.lift.leftReelEncoder.getRaw() / 2048;
-    Robot.lift.rightReelRotations = Robot.lift.rightReelEncoder.getRaw() / 2048;
- 
-
-    ///////////////////setting variables on dashboard
+  
     if(Robot.lift.rightReel.get() == 0)
     {
       SmartDashboard.putString("Lift State", "Lift Immobile");
@@ -91,11 +100,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putBoolean("Top LimitSwitch", Robot.lift.Toplimit.get());
     SmartDashboard.putBoolean("Bottom LimitSwitch", Robot.lift.Bottomlimit.get());
 
-    SmartDashboard.putNumber("LeftReelGetRaw", Robot.lift.leftReelEncoder.getRaw());
-    SmartDashboard.putNumber("RightReelGetRaw", Robot.lift.rightReelEncoder.getRaw());
   
-    SmartDashboard.putNumber("LeftReelCount", Robot.lift.leftReelRotations);
-    SmartDashboard.putNumber("RightReelCount", Robot.lift.rightReelRotations);
     
 
     ////////////////////
@@ -152,8 +157,8 @@ public class Robot extends TimedRobot {
 
   if(Robot.lift.Bottomlimit.get())
   {
-    Robot.lift.rightReelEncoder.reset();
-    Robot.lift.leftReelEncoder.reset();
+  //rightReelEncoder.reset();
+ // leftReelEncoder.reset();
 
   }
 
@@ -169,6 +174,8 @@ public class Robot extends TimedRobot {
   public void disabledInit() 
   {
     Robot.pneumatics.compressor.setClosedLoopControl(false);
+    leftReelEncoder.reset();
+    rightReelEncoder.reset();
   }
 
   @Override
@@ -185,6 +192,8 @@ public class Robot extends TimedRobot {
     // schedule the autonomous command (example)
    // if (m_autonomousCommand != null) {
     // m_autonomousCommand.start();
+    auto.straight(100);
+
     }
   
 
@@ -193,12 +202,16 @@ public class Robot extends TimedRobot {
   public void autonomousPeriodic() 
   {
     Scheduler.getInstance().run();
+  /*  SmartDashboard.putNumber("Left PID", auto.leftPID.getOutput());
+    SmartDashboard.putNumber("Right PID", auto.rightPID.getOutput());
+    driveBase.leftDrive.set(auto.getLeftOutput());
+    driveBase.rightDrive.set(auto.getRightOutput()); */
   }
 
   @Override
   public void teleopInit() 
   {
-    Robot.pneumatics.compressor.setClosedLoopControl(true);
+   Robot.pneumatics.compressor.setClosedLoopControl(true);
    // InitiateIntake();
     //if (m_autonomousCommand != null) {
     //  m_autonomousCommand.cancel();
@@ -208,6 +221,11 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic()
   {
+    SmartDashboard.putNumber("LeftReelGetRaw", leftReelEncoder.get());
+    SmartDashboard.putNumber("RightReelGetRaw", rightReelEncoder.get());
+    /*SmartDashboard.putNumber("Left PID", auto.getLeftOutput());
+    SmartDashboard.putNumber("Right PID", auto.getRightOutput());*/
+    
     Scheduler.getInstance().run();
     
   }

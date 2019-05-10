@@ -26,6 +26,7 @@ private PIDController pid;
 
     public void stop() {
         pid.disable();
+        
     }
 
     public void reset() {
@@ -55,4 +56,5 @@ private PIDController pid;
     public void pidWrite(double output) {
     
     }
+    
 }
